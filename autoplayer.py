@@ -1,17 +1,18 @@
 import random
 from time import sleep
 
-from selenium.webdriver.common.keys import Keys
-
 from player2048 import Player2048
+from utilities import *
 
 player = Player2048()
 sleep(2)
 for i in range(13):
-    player.html.send_keys(random.choice([Keys.UP, Keys.DOWN, Keys.LEFT, Keys.RIGHT]))
+    player.html.send_keys(random.choice(player.keys))
     sleep(0.3)
 tile_container = player.browser.find_element_by_class_name('tile-container')
 positions, numbers = player.parse_string_regex(tile_container.get_attribute('innerHTML'))
+
+distinctify(positions,numbers)
 
 grid = [[pos for pos in positions if pos[0] == '1'], [pos for pos in positions if pos[0] == '2'],
         [pos for pos in positions if pos[0] == '3'], [pos for pos in positions if pos[0] == '4']]
