@@ -1,14 +1,13 @@
 import random
 from time import sleep
-
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-
 
 class Player2048:
     def __init__(self):
         self.browser = webdriver.Chrome()
         self.browser.get('https://play2048.co/')
+        self.browser.fullscreen_window()
         self.html = self.browser.find_element_by_tag_name('html')
         self.keys = [Keys.UP, Keys.DOWN, Keys.LEFT, Keys.RIGHT]
         self.keys_hor = self.keys[2:]

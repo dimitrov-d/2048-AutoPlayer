@@ -1,17 +1,13 @@
 from time import sleep
-
 from player2048 import Player2048
 from utilities import *
 
 player = Player2048()
 sleep(2)
 
-
 def evaluate_tiles():
     tile_container = player.browser.find_element_by_class_name('tile-container')
-    print(tile_container.get_attribute('innerHTML'))
     positions, numbers = parse_string_regex(tile_container.get_attribute('innerHTML'))
-    print(positions)
     distinctify(positions, numbers)
 
     player.grid_cols = [[pos for pos in positions if pos[0] == '1'], [pos for pos in positions if pos[0] == '2'],
@@ -27,6 +23,10 @@ def evaluate_tiles():
 
 while True:
     evaluate_tiles()
-    player.play_game()
 
-# player.close()
+    if '2048' in player.tile_mapping.values():
+        print('Bot won!')
+        player.close()
+    else:
+        player.play_game()
+

@@ -1,14 +1,15 @@
 import re
 
-
 def distinctify(positions, numbers):
-    if len(positions) <= 1:
-        return
-    for i in range(1, len(positions) - 1):
-        if positions[i] == positions[i - 1]:
-            del (positions[i])
-            del (numbers[i])
-
+    j = 0
+    while j != len(positions) - 1:
+        if positions[j] == positions[j + 1]:
+            del (positions[j + 1])
+            del (numbers[j + 1])
+        else:
+            j += 1
+        if j == len(positions) - 1:
+            break
 
 def parse_string_regex(string):
     regex_pos = re.compile(r'tile-position-\d-\d')
