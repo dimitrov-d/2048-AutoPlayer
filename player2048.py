@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 class Player2048:
+    # Initialize all attributes
     def __init__(self):
         self.browser = webdriver.Chrome()
         self.browser.get('https://play2048.co/')
@@ -16,6 +17,7 @@ class Player2048:
         self.grid_cols = []
         self.tile_mapping = {}
 
+    # If there are two neighboring tiles in any column, press a vertical key
     def find_matching_col_tiles(self):
         for column in self.grid_cols:
             for tile in range(1, len(column) - 1):
@@ -23,6 +25,7 @@ class Player2048:
                     return True
         return False
 
+    # If there are two neighboring tiles in any row, press a horizontal key
     def find_matching_row_tiles(self):
         for row in self.grid_rows:
             for tile in range(1, len(row) - 1):

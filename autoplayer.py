@@ -10,9 +10,11 @@ def evaluate_tiles():
     positions, numbers = parse_string_regex(tile_container.get_attribute('innerHTML'))
     distinctify(positions, numbers)
 
+    # A grid of all tiles by column
     player.grid_cols = [[pos for pos in positions if pos[0] == '1'], [pos for pos in positions if pos[0] == '2'],
                         [pos for pos in positions if pos[0] == '3'], [pos for pos in positions if pos[0] == '4']]
 
+    # A grid of all tiles by row
     player.grid_rows = [[pos for pos in positions if pos[1] == '1'], [pos for pos in positions if pos[1] == '2'],
                         [pos for pos in positions if pos[1] == '3'], [pos for pos in positions if pos[1] == '4']]
 

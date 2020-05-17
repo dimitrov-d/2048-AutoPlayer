@@ -1,5 +1,6 @@
 import re
 
+# Remove repeating tile positions and their corresponding numbers
 def distinctify(positions, numbers):
     j = 0
     while j != len(positions) - 1:
@@ -11,6 +12,7 @@ def distinctify(positions, numbers):
         if j == len(positions) - 1:
             break
 
+# Parse the tile positions and numbers from the HTML string
 def parse_string_regex(string):
     regex_pos = re.compile(r'tile-position-\d-\d')
     regex_nums = re.compile(r'"tile-inner">\d')
