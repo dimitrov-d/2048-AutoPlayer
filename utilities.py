@@ -1,7 +1,8 @@
 import re
 
+
 def distinctify(positions, numbers):
-    if len(positions)<=1:
+    if len(positions) <= 1:
         return
     for i in range(1, len(positions) - 1):
         if positions[i] == positions[i - 1]:
