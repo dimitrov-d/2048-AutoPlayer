@@ -14,29 +14,30 @@ positions, numbers = player.parse_string_regex(tile_container.get_attribute('inn
 
 distinctify(positions,numbers)
 
-grid = [[pos for pos in positions if pos[0] == '1'], [pos for pos in positions if pos[0] == '2'],
+grid_cols = [[pos for pos in positions if pos[0] == '1'], [pos for pos in positions if pos[0] == '2'],
         [pos for pos in positions if pos[0] == '3'], [pos for pos in positions if pos[0] == '4']]
 
 tile_mapping = {}
 for i in range(len(positions)):
     tile_mapping[positions[i]] = numbers[i]
 
-print(grid)
+print(grid_cols)
 print(tile_mapping)
 
-for column in grid:
+for column in grid_cols:
     if len(column) > 1:
         for tile in range(1, len(column) - 1):
             if (int(tile_mapping[column[tile]]) == int(tile_mapping[column[tile - 1]])) and column[tile] != column[tile-1]:
-                print('col equal')
+                player.html.send_keys(random.choice(player.keys_ver))
 
-from itertools import zip_longest
-rows = r = [list(filter(None,i)) for i in zip_longest(*grid)]
+grid_rows = [[pos for pos in positions if pos[1] == '1'], [pos for pos in positions if pos[1] == '2'],
+        [pos for pos in positions if pos[1] == '3'], [pos for pos in positions if pos[1] == '4']]
 
-for row in rows:
+print(grid_rows)
+
+for row in grid_rows:
     for tile in range(1, len(row) - 1):
         if (int(tile_mapping[row[tile]]) == int(tile_mapping[row[tile - 1]])) and row[tile] != row[tile - 1]:
-            print('row equal')
-
+            player.html.send_keys(random.choice(player.keys_hor))
 
 # player.close()
